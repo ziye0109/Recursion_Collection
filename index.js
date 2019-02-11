@@ -31,3 +31,52 @@ const sumNumbers = (array, sum = 0) => {
 };
 
 console.log(sumNumbers(array));
+
+//print dir
+
+var data = [
+  {
+    name: "All",
+    children: [
+      {
+        name: "Fruit",
+        children: [
+          { name: "Apple", children: [{ name: "Green Apple" }, { name: "Red Apple" }] }
+        ]
+      },
+      {
+        name: "Main",
+        children: [
+          {
+            name: "Rice",
+            children: [{ name: "North Rice" }, { name: "South Rice" }]
+          }
+        ]
+      },
+      {
+        name: "Houseware",
+        children: [
+          {
+            name: "Computer",
+            children: [{ name: "Mac" }, { name: "Windows" }]
+          },
+          {
+            name: "Bath",
+            children: [{ name: "soup" }, { name: "lotion" }]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+const printDataTree = (data,level=1) => {
+  console.log(level+ ": "+data.name);
+
+  if (data.children&&data.children.length) {
+    level++;
+    data.children.forEach(child => printDataTree(child,level));
+  }
+};
+
+console.log(printDataTree(data[0]));
