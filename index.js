@@ -84,7 +84,7 @@ const printDataTree = (data, level = 1) => {
 
 console.log(printDataTree(data[0]));
 
-//Tree
+//Tree node traverse
 
 function Tree(value) {
   this.value = value;
@@ -101,7 +101,6 @@ node1.right = new Tree("3-left-2");
 node2.left = new Tree("3-right-1");
 node2.right = new Tree("3-right-2");
 
-
 const traverseTree = node => {
   if (node !== null) {
     console.log(node.value);
@@ -111,3 +110,15 @@ const traverseTree = node => {
 };
 
 traverseTree(root);
+
+//max depth
+
+const maxDepth = root => {
+  if (root === null) {
+    return 0;
+  }
+
+  return 1 + Math.max(maxDepth(root.left, root.right));
+};
+
+console.log(maxDepth(root));
