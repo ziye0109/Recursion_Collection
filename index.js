@@ -41,7 +41,10 @@ var data = [
       {
         name: "Fruit",
         children: [
-          { name: "Apple", children: [{ name: "Green Apple" }, { name: "Red Apple" }] }
+          {
+            name: "Apple",
+            children: [{ name: "Green Apple" }, { name: "Red Apple" }]
+          }
         ]
       },
       {
@@ -70,13 +73,41 @@ var data = [
   }
 ];
 
-const printDataTree = (data,level=1) => {
-  console.log(level+ ": "+data.name);
+const printDataTree = (data, level = 1) => {
+  console.log(level + ": " + data.name);
 
-  if (data.children&&data.children.length) {
+  if (data.children && data.children.length) {
     level++;
-    data.children.forEach(child => printDataTree(child,level));
+    data.children.forEach(child => printDataTree(child, level));
   }
 };
 
 console.log(printDataTree(data[0]));
+
+//Tree
+
+function Tree(value) {
+  this.value = value;
+  this.left = this.right = null;
+}
+
+const root = new Tree("1");
+const node1 = new Tree("2-left-1");
+const node2 = new Tree("2-left-2");
+root.left = node1;
+root.right = node2;
+node1.left = new Tree("3-left-1");
+node1.right = new Tree("3-left-2");
+node2.left = new Tree("3-right-1");
+node2.right = new Tree("3-right-2");
+
+
+const traverseTree = node => {
+  if (node !== null) {
+    console.log(node.value);
+    traverseTree(node.left);
+    traverseTree(node.right);
+  }
+};
+
+traverseTree(root);
